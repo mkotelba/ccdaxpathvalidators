@@ -42,7 +42,7 @@ public class ResultsValidator implements MultipleXPathNodeValidator {
 					Node codeNode = nodes.item(i);
 					
 					CcdaCodeValidator codeValidator = new CcdaCodeValidator();
-					CcdaValidatorResult result = codeValidator.validateNode(expression + "/" + localExp, xpath, codeNode, i);
+					CcdaValidatorResult result = codeValidator.validateNode(expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i);
 					
 					if (results == null)
 					{
