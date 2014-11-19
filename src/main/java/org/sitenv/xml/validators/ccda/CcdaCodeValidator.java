@@ -2,6 +2,9 @@ package org.sitenv.xml.validators.ccda;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -10,15 +13,17 @@ import javax.xml.xpath.XPathExpressionException;
 import org.apache.log4j.Logger;
 import org.sitenv.vocabularies.data.DisplayNameValidationResult;
 import org.sitenv.vocabularies.engine.ValidationEngine;
-import org.sitenv.xml.xpathvalidator.engine.XPathNodeValidator;
+import org.sitenv.xml.xpathvalidator.engine.MultipleXPathNodeValidator;
+import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
 import org.w3c.dom.Node;
 
-public class CcdaCodeValidator implements XPathNodeValidator {
+public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 
 	private static final Logger logger = Logger.getLogger(CcdaCodeValidator.class);
 	
-	public CcdaValidatorResult validateNode(String expression, XPath xpath, Node node, int nodeIndex) {
+	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex) {
 
+		List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
 		try
 		{
 			XPathExpression expCode = xpath.compile("@code");
@@ -51,28 +56,61 @@ public class CcdaCodeValidator implements XPathNodeValidator {
 					isDisplayNameMatch = dnResult.isResult() && isValidCode;
 				}
 				
-				CcdaValidatorResult result = new CcdaValidatorResult(); 
-				
-				result.setCode(code);
-				result.setCodeSystem(codeSystem);
-				result.setCodeSystemName(codeSystemName);
-				result.setDisplayName(displayName);
-				result.setXpathExpression(expression);
-				
-				result.setNodeIndex(nodeIndex);
-				
-				
 				if (!isValidCode) {
+					CcdaValidatorResult result = new CcdaValidatorResult(); 
+					
+					result.setCode(code);
+					result.setCodeSystem(codeSystem);
+					result.setCodeSystemName(codeSystemName);
+					result.setDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					result.setNodeIndex(nodeIndex);
 					result.setError(true);
 					result.setErrorMessage("Code '" + code + "' does not exist in vocabulary '" + codeSystemName + "' (" + codeSystem + ")");
+					list.add(result);
 				}
 				
-				if (!isValidDisplayName && result.getDisplayName() != null && !result.getDisplayName().trim().equals("")) {
+				if (displayName == null || displayName.trim().isEmpty())
+				{
+					CcdaValidatorResult result = new CcdaValidatorResult(); 
+					
+					result.setCode(code);
+					result.setCodeSystem(codeSystem);
+					result.setCodeSystemName(codeSystemName);
+					result.setDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					result.setNodeIndex(nodeIndex);
+					result.setInformation(true);
+					result.setInfoMessage("DisplayName is not populated.");
+					list.add(result);
+					
+				} else if (!isValidDisplayName) {
+					CcdaValidatorResult result = new CcdaValidatorResult(); 
+					
+					result.setCode(code);
+					result.setCodeSystem(codeSystem);
+					result.setCodeSystemName(codeSystemName);
+					result.setDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					result.setNodeIndex(nodeIndex);
+					
 					result.setWarning(true);
 					result.setWarningMessage("DisplayName '" + displayName + "' does not (fully) exist in vocabulary '" + codeSystemName + "' (" + codeSystem + ")");
-				}
 				
-				else if (!isDisplayNameMatch) {
+					list.add(result);
+				} else if (!isDisplayNameMatch) {
+					CcdaValidatorResult result = new CcdaValidatorResult(); 
+					
+					result.setCode(code);
+					result.setCodeSystem(codeSystem);
+					result.setCodeSystemName(codeSystemName);
+					result.setDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					
 					result.setInformation(true);
 					if (dnResult != null && dnResult.getActualDisplayName() != null)
 					{
@@ -83,19 +121,15 @@ public class CcdaCodeValidator implements XPathNodeValidator {
 						result.setInfoMessage("DisplayName for code '" + code + "' does not exist in vocabulary '" + codeSystemName + "' (" + codeSystem + ")");
 					}
 					
-				
+					list.add(result);
 				}
 				
-				
-				return result;
 			}
 			else 
 			{
-				CcdaValidatorResult result = new CcdaValidatorResult();
 				
 				// TODO: any additional information due to a code system not existing in the vocabulary service
 				
-				return result;
 			}
 			
 		}
@@ -105,7 +139,7 @@ public class CcdaCodeValidator implements XPathNodeValidator {
 		}
 		
 		// TODO Auto-generated method stub
-		return null;
+		return list;
 	}
 	
 	

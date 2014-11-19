@@ -42,14 +42,14 @@ public class MedicationsValidator implements MultipleXPathNodeValidator {
 					Node codeNode = nodes.item(i);
 					
 					CcdaCodeValidator codeValidator = new CcdaCodeValidator();
-					CcdaValidatorResult result = codeValidator.validateNode(expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i);
+					List<XPathValidatorResult> result = codeValidator.validateNode(expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i);
 					
 					if (results == null)
 					{
 						results = new ArrayList<XPathValidatorResult>();
 					}
 					
-					results.add(result);
+					results.addAll(result);
 				}
 			}
 			
