@@ -4,6 +4,7 @@ package org.sitenv.xml.validators.ccda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -21,7 +22,7 @@ public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 
 	private static final Logger logger = Logger.getLogger(CcdaCodeValidator.class);
 	
-	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex) {
+	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
 
 		List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
 		try

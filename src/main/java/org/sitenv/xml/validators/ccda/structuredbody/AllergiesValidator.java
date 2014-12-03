@@ -2,6 +2,7 @@ package org.sitenv.xml.validators.ccda.structuredbody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -34,7 +35,7 @@ public class AllergiesValidator implements MultipleXPathNodeValidator {
 	};
 	
 	// this should be used with the template 2.16.840.1.113883.10.20.22.2.6.1
-	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex) {
+	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
 	
 		List<XPathValidatorResult> results = null;
 		 
@@ -50,7 +51,7 @@ public class AllergiesValidator implements MultipleXPathNodeValidator {
 					Node codeNode = nodes.item(i);
 					
 					CcdaCodeValidator codeValidator = new CcdaCodeValidator();
-					List<XPathValidatorResult> result = codeValidator.validateNode(expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i);
+					List<XPathValidatorResult> result = codeValidator.validateNode(expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i, params);
 					
 					if (results == null)
 					{
@@ -65,7 +66,7 @@ public class AllergiesValidator implements MultipleXPathNodeValidator {
 			logger.error(e);
 		}
 		
-		logger.fatal("EXECUTED THE Allergies Validator");
+		logger.debug("EXECUTED THE Allergies Validator");
 		
 		return results;
 	}
