@@ -18,11 +18,11 @@ import org.sitenv.xml.xpathvalidator.engine.MultipleXPathNodeValidator;
 import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
 import org.w3c.dom.Node;
 
-public class CcdaCodeValidator implements MultipleXPathNodeValidator {
+public class CcdaCodeValidator {
 
 	private static final Logger logger = Logger.getLogger(CcdaCodeValidator.class);
 	
-	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
+	public List<XPathValidatorResult> validateNode(String baseExpression, String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
 
 		List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
 		try
@@ -64,6 +64,7 @@ public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 					result.setCodeSystem(codeSystem);
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
+					result.setBaseXpathExpression(baseExpression);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -80,6 +81,7 @@ public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 					result.setCodeSystem(codeSystem);
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
+					result.setBaseXpathExpression(baseExpression);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -94,6 +96,7 @@ public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 					result.setCodeSystem(codeSystem);
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
+					result.setBaseXpathExpression(baseExpression);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -109,8 +112,10 @@ public class CcdaCodeValidator implements MultipleXPathNodeValidator {
 					result.setCodeSystem(codeSystem);
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
+					result.setBaseXpathExpression(baseExpression);
 					result.setXpathExpression(expression);
 					
+					result.setNodeIndex(nodeIndex);
 					
 					result.setInformation(true);
 					if (dnResult != null && dnResult.getActualDisplayName() != null)
