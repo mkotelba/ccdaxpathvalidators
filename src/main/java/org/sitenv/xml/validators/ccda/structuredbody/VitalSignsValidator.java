@@ -36,7 +36,7 @@ public class VitalSignsValidator implements MultipleXPathNodeValidator {
 				Node codeNode = nodes.item(i);
 				
 				CcdaCodeValidator codeValidator = new CcdaCodeValidator();
-				List<XPathValidatorResult> result = codeValidator.validateNode(expression, expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i, params);
+				List<XPathValidatorResult> result = codeValidator.validateNode(expression, nodeIndex, expression + "[" + nodeIndex + "]/" + localExp, xpath, codeNode, i, params);
 				
 				if (results == null)
 				{

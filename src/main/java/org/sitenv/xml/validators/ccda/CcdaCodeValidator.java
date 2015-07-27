@@ -22,7 +22,7 @@ public class CcdaCodeValidator {
 
 	private static final Logger logger = Logger.getLogger(CcdaCodeValidator.class);
 	
-	public List<XPathValidatorResult> validateNode(String baseExpression, String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
+	public List<XPathValidatorResult> validateNode(String baseExpression, int baseNodeIndex, String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
 
 		List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
 		try
@@ -65,6 +65,7 @@ public class CcdaCodeValidator {
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
 					result.setBaseXpathExpression(baseExpression);
+					result.setBaseNodeIndex(baseNodeIndex);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -82,6 +83,7 @@ public class CcdaCodeValidator {
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
 					result.setBaseXpathExpression(baseExpression);
+					result.setBaseNodeIndex(baseNodeIndex);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -97,6 +99,7 @@ public class CcdaCodeValidator {
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
 					result.setBaseXpathExpression(baseExpression);
+					result.setBaseNodeIndex(baseNodeIndex);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
@@ -113,6 +116,7 @@ public class CcdaCodeValidator {
 					result.setCodeSystemName(codeSystemName);
 					result.setDisplayName(displayName);
 					result.setBaseXpathExpression(baseExpression);
+					result.setBaseNodeIndex(baseNodeIndex);
 					result.setXpathExpression(expression);
 					
 					result.setNodeIndex(nodeIndex);
