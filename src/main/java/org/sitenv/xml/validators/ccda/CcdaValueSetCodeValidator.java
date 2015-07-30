@@ -23,7 +23,7 @@ public class CcdaValueSetCodeValidator implements MultipleXPathNodeValidator {
 	
 	public List<XPathValidatorResult> validateNode(String expression, XPath xpath, Node node, int nodeIndex, Map<String, String> params) {
 
-		List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
+		/*List<XPathValidatorResult> list = new ArrayList<XPathValidatorResult>();
 		
 		try
 		{
@@ -89,6 +89,9 @@ public class CcdaValueSetCodeValidator implements MultipleXPathNodeValidator {
 		}
 		
 		// TODO Auto-generated method stub
-		return list;
+		return list;  */
+		
+		
+		return null;
 	}
 }

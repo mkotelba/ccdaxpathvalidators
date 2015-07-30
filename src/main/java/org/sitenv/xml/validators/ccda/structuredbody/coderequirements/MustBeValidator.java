@@ -49,15 +49,24 @@ public class MustBeValidator implements XPathNodeValidator {
 			{
 				if (codeSystem.equalsIgnoreCase(codeSystems[i]))
 				{
-					return null;
+					result = new CcdaValidatorResult();
+					result.setRequestedCode(code);
+					result.setRequestedCodeSystem(codeSystem);
+					result.setRequestedCodeSystemName(codeSystemName);
+					result.setRequestedDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					result.setNodeIndex(nodeIndex);
+					result.setInformation(true);
+					result.setInfoMessage("Code system '" + codeSystem + "' is valid for the node found at '" + expression + "[" + nodeIndex + "]'");
 				}
 			}
 			
 			result = new CcdaValidatorResult();
-			result.setCode(code);
-			result.setCodeSystem(codeSystem);
-			result.setCodeSystemName(codeSystemName);
-			result.setDisplayName(displayName);
+			result.setRequestedCode(code);
+			result.setRequestedCodeSystem(codeSystem);
+			result.setRequestedCodeSystemName(codeSystemName);
+			result.setRequestedDisplayName(displayName);
 			result.setXpathExpression(expression);
 			
 			result.setNodeIndex(nodeIndex);
