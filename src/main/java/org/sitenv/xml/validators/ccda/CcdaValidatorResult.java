@@ -11,11 +11,29 @@ public class CcdaValidatorResult extends XPathValidatorResult {
 	private String requestedCodeSystem;
 	private String requestedCodeSystemName;
 	private String requestedDisplayName;
+	private String requestedValueSet;
+	private String valueSetName;
 	
 	private Set<String> expectedValues = new TreeSet<String>();
 
 	
 	
+	public String getRequestedValueSet() {
+		return requestedValueSet;
+	}
+
+	public void setRequestedValueSet(String requestedValueSet) {
+		this.requestedValueSet = requestedValueSet;
+	}
+
+	public String getValueSetName() {
+		return valueSetName;
+	}
+
+	public void setValueSetName(String valueSetName) {
+		this.valueSetName = valueSetName;
+	}
+
 	public String getRequestedCode() {
 		return requestedCode;
 	}

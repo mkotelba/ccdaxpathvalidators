@@ -32,6 +32,7 @@ public class CcdaCodeValidator {
 			XPathExpression expCodeSystemName = xpath.compile("@codeSystemName");
 			XPathExpression expDisplayName = xpath.compile("@displayName");
 			
+
 			String code = (String)expCode.evaluate(node, XPathConstants.STRING);
 			logger.trace("code: " + code);
 			
@@ -69,11 +70,12 @@ public class CcdaCodeValidator {
 				if (!validation.getCodeExistsInCodeSystem()) {
 					result = createNewResult(code, codeSystem, codeSystemName, displayName, baseExpression, baseNodeIndex, expression, nodeIndex, validation);
 					
-					errors = false;
+					errors = true;
 					result.setError(true);
 					result.setErrorMessage("Code '" + code + "' does not exist in code system " + ((codeSystemName!=null) ? "'" + codeSystemName + "'" :"") + " (" + codeSystem + ")");
 					list.add(result);
 				}
+				
 				
 				if (validation.getRequestedDisplayName() == null || validation.getRequestedDisplayName().trim().isEmpty())
 				{
@@ -85,8 +87,8 @@ public class CcdaCodeValidator {
 					list.add(result);
 					
 				}
-				
-				if (!validation.getDisplayNameExistsInCodeSystem()) {
+				else if (!validation.getDisplayNameExistsInCodeSystem()) 
+				{
 					result = createNewResult(code, codeSystem, codeSystemName, displayName, baseExpression, baseNodeIndex, expression, nodeIndex, validation);
 					
 					
@@ -96,8 +98,8 @@ public class CcdaCodeValidator {
 	
 					list.add(result);
 				}
-				
-				if (!validation.getDisplayNameExistsForCode()) {
+				else if (!validation.getDisplayNameExistsForCode()) 
+				{
 					
 					result = createNewResult(code, codeSystem, codeSystemName, displayName, baseExpression, baseNodeIndex, expression, nodeIndex, validation);
 					
