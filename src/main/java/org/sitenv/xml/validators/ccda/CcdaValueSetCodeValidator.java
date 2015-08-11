@@ -71,6 +71,8 @@ public class CcdaValueSetCodeValidator {
 					result.setError(true);
 					result.setErrorMessage("Code system '" + codeSystem + "' does not exist in the value set (" + valueSet + ")");
 					result.setExpectedValues(validation.getExpectedCodeSystemsForValueSet());
+
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_VALUE_SET);
 					list.add(result);
 				}
 				else if (!validation.getCodeSystemAndNameMatch())
@@ -81,6 +83,8 @@ public class CcdaValueSetCodeValidator {
 					result.setWarning(true);
 					result.setWarningMessage("Code system name '" + codeSystemName + "' does not match expected name for code system oid (" + codeSystem + ") in the value set (" + valueSet + ")");
 					result.setExpectedValues(validation.getExpectedCodeSystemNamesForOid());
+
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEM_NAMES_FOR_CODE_SYSTEM);
 					list.add(result);
 				}
 				
@@ -102,6 +106,8 @@ public class CcdaValueSetCodeValidator {
 					result.setError(true);
 					result.setErrorMessage("Code '" + code + "' does not exist in code system " + ((codeSystemName!=null) ? "'" + codeSystemName + "'" :"") + " (" + codeSystem + ") in the value set (" + valueSet + ")");
 					
+					result.setExpectedValues(validation.getExpectedCodeSystemsForCode());
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_CODE);
 					list.add(result);
 				}
 				
@@ -145,6 +151,10 @@ public class CcdaValueSetCodeValidator {
 					result.setWarning(true);
 					result.setWarningMessage("DisplayName '" + displayName + "' for code '" + code + "' does not exist in vocabulary '" + codeSystemName + "' (" + codeSystem + ") in the value set (" + valueSet + ")");
 					result.setExpectedValues(validation.getExpectedDescriptionsForCode());
+					
+
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.DISPLAY_NAMES_FOR_CODE);
+					
 					list.add(result);
 				}
 				
@@ -170,7 +180,8 @@ public class CcdaValueSetCodeValidator {
 				result.setInfoMessage("Value set code validation attempt for a value set that does not exist in service.");
 				
 				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_MAP.keySet());
-				
+
+				result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
 				list.add(result);
 			}
 			

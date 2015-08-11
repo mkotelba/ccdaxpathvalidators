@@ -14,25 +14,9 @@ public class CcdaValidatorResult extends XPathValidatorResult {
 	private String requestedValueSet;
 	private String valueSetName;
 	
+	private CcdaValidatorExpectedValuesType expectedValuesType;
+	
 	private Set<String> expectedValues = new TreeSet<String>();
-
-	
-	
-	public String getRequestedValueSet() {
-		return requestedValueSet;
-	}
-
-	public void setRequestedValueSet(String requestedValueSet) {
-		this.requestedValueSet = requestedValueSet;
-	}
-
-	public String getValueSetName() {
-		return valueSetName;
-	}
-
-	public void setValueSetName(String valueSetName) {
-		this.valueSetName = valueSetName;
-	}
 
 	public String getRequestedCode() {
 		return requestedCode;
@@ -66,6 +50,31 @@ public class CcdaValidatorResult extends XPathValidatorResult {
 		this.requestedDisplayName = requestedDisplayName;
 	}
 
+	public String getRequestedValueSet() {
+		return requestedValueSet;
+	}
+
+	public void setRequestedValueSet(String requestedValueSet) {
+		this.requestedValueSet = requestedValueSet;
+	}
+
+	public String getValueSetName() {
+		return valueSetName;
+	}
+
+	public void setValueSetName(String valueSetName) {
+		this.valueSetName = valueSetName;
+	}
+
+	public CcdaValidatorExpectedValuesType getExpectedValuesType() {
+		return expectedValuesType;
+	}
+
+	public void setExpectedValuesType(
+			CcdaValidatorExpectedValuesType expectedValuesType) {
+		this.expectedValuesType = expectedValuesType;
+	}
+
 	public Set<String> getExpectedValues() {
 		return expectedValues;
 	}
@@ -73,6 +82,9 @@ public class CcdaValidatorResult extends XPathValidatorResult {
 	public void setExpectedValues(Set<String> expectedValues) {
 		this.expectedValues = expectedValues;
 	}
+
+	
+	
 	
 	
 	

@@ -63,7 +63,10 @@ public class CcdaCodeValidator {
 					result.setWarning(true);
 					result.setWarningMessage("Code system name '" + codeSystemName + "' does not match expected name for code system oid (" + codeSystem + ")");
 					result.setExpectedValues(validation.getExpectedCodeSystemNamesForOid());
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEM_NAMES_FOR_CODE_SYSTEM);
 					list.add(result);
+					
+					
 				}
 				
 				
@@ -108,7 +111,8 @@ public class CcdaCodeValidator {
 					result.setWarningMessage("DisplayName '" + displayName + "' for code '" + code + "' does not exist in vocabulary '" + codeSystemName + "' (" + codeSystem + ")");
 					
 					result.setExpectedValues(validation.getExpectedDisplayNamesForCode());
-					
+
+					result.setExpectedValuesType(CcdaValidatorExpectedValuesType.DISPLAY_NAMES_FOR_CODE);
 					list.add(result);
 				}
 				
@@ -134,7 +138,8 @@ public class CcdaCodeValidator {
 				result.setInfoMessage("Code validation attempt of code system that does not exist in service.");
 				
 				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_MAP.keySet());
-				
+
+				result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
 				list.add(result);
 			}
 			
