@@ -59,6 +59,8 @@ public class MustBeValidator implements XPathNodeValidator {
 					result.setNodeIndex(nodeIndex);
 					result.setInformation(true);
 					result.setInfoMessage("Code system '" + codeSystem + "' is valid for the node found at '" + expression + "[" + nodeIndex + "]'");
+					
+					return result;
 				}
 			}
 			
