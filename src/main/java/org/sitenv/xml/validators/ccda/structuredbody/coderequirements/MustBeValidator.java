@@ -58,7 +58,7 @@ public class MustBeValidator implements XPathNodeValidator {
 					
 					result.setNodeIndex(nodeIndex);
 					result.setInformation(true);
-					result.setInfoMessage("Code system '" + codeSystem + "' is valid for the node found at '" + expression + "[" + nodeIndex + "]'");
+					result.setInfoMessage("Code system '" + codeSystem + "' is valid for the node found at '" + expression + "[" + (nodeIndex + 1) + "]'");
 					
 					return result;
 				}
@@ -73,7 +73,7 @@ public class MustBeValidator implements XPathNodeValidator {
 			
 			result.setNodeIndex(nodeIndex);
 			result.setError(true);
-			result.setErrorMessage("Code system '" + codeSystem + "' is not valid for the node found for '" + expression + "[" + nodeIndex + "]'");
+			result.setErrorMessage("Code system '" + codeSystem + "' is not valid for the node found for '" + expression + "[" + (nodeIndex + 1) + "]'");
 		}
 		catch (XPathExpressionException e)
 		{
