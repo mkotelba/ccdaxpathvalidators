@@ -49,20 +49,31 @@ public class MustBeValidator implements XPathNodeValidator {
 			{
 				if (codeSystem.equalsIgnoreCase(codeSystems[i]))
 				{
-					return null;
+					result = new CcdaValidatorResult();
+					result.setRequestedCode(code);
+					result.setRequestedCodeSystem(codeSystem);
+					result.setRequestedCodeSystemName(codeSystemName);
+					result.setRequestedDisplayName(displayName);
+					result.setXpathExpression(expression);
+					
+					result.setNodeIndex(nodeIndex);
+					result.setInformation(true);
+					result.setInfoMessage("Code system '" + codeSystem + "' is valid for the node found at '" + expression + "[" + (nodeIndex + 1) + "]'");
+					
+					return result;
 				}
 			}
 			
 			result = new CcdaValidatorResult();
-			result.setCode(code);
-			result.setCodeSystem(codeSystem);
-			result.setCodeSystemName(codeSystemName);
-			result.setDisplayName(displayName);
+			result.setRequestedCode(code);
+			result.setRequestedCodeSystem(codeSystem);
+			result.setRequestedCodeSystemName(codeSystemName);
+			result.setRequestedDisplayName(displayName);
 			result.setXpathExpression(expression);
 			
 			result.setNodeIndex(nodeIndex);
 			result.setError(true);
-			result.setErrorMessage("Code system '" + codeSystem + "' is not valid for the node found for '" + expression + "[" + nodeIndex + "]'");
+			result.setErrorMessage("Code system '" + codeSystem + "' is not valid for the node found for '" + expression + "[" + (nodeIndex + 1) + "]'");
 		}
 		catch (XPathExpressionException e)
 		{

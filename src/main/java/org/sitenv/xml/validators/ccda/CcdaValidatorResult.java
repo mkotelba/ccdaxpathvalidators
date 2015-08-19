@@ -1,81 +1,90 @@
 package org.sitenv.xml.validators.ccda;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
 
 public class CcdaValidatorResult extends XPathValidatorResult {
 
-	private String code;
-	private String codeSystem;
-	private String codeSystemName;
-	private String displayName;
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((code == null) ? 0 : code.hashCode());
-		result = prime * result
-				+ ((codeSystem == null) ? 0 : codeSystem.hashCode());
-		result = prime * result
-				+ ((codeSystemName == null) ? 0 : codeSystemName.hashCode());
-		result = prime * result
-				+ ((displayName == null) ? 0 : displayName.hashCode());
-		return result;
+	private String requestedCode;
+	private String requestedCodeSystem;
+	private String requestedCodeSystemName;
+	private String requestedDisplayName;
+	private String requestedValueSet;
+	private String valueSetName;
+	
+	private CcdaValidatorExpectedValuesType expectedValuesType;
+	
+	private Set<String> expectedValues = new TreeSet<String>();
+
+	public String getRequestedCode() {
+		return requestedCode;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CcdaValidatorResult other = (CcdaValidatorResult) obj;
-		if (code == null) {
-			if (other.code != null)
-				return false;
-		} else if (!code.equals(other.code))
-			return false;
-		if (codeSystem == null) {
-			if (other.codeSystem != null)
-				return false;
-		} else if (!codeSystem.equals(other.codeSystem))
-			return false;
-		if (codeSystemName == null) {
-			if (other.codeSystemName != null)
-				return false;
-		} else if (!codeSystemName.equals(other.codeSystemName))
-			return false;
-		if (displayName == null) {
-			if (other.displayName != null)
-				return false;
-		} else if (!displayName.equals(other.displayName))
-			return false;
-		return true;
+
+	public void setRequestedCode(String requestedCode) {
+		this.requestedCode = requestedCode;
 	}
-	public String getCode() {
-		return code;
+
+	public String getRequestedCodeSystem() {
+		return requestedCodeSystem;
 	}
-	public void setCode(String code) {
-		this.code = code;
+
+	public void setRequestedCodeSystem(String requestedCodeSystem) {
+		this.requestedCodeSystem = requestedCodeSystem;
 	}
-	public String getCodeSystem() {
-		return codeSystem;
+
+	public String getRequestedCodeSystemName() {
+		return requestedCodeSystemName;
 	}
-	public void setCodeSystem(String codeSystem) {
-		this.codeSystem = codeSystem;
+
+	public void setRequestedCodeSystemName(String requestedCodeSystemName) {
+		this.requestedCodeSystemName = requestedCodeSystemName;
 	}
-	public String getCodeSystemName() {
-		return codeSystemName;
+
+	public String getRequestedDisplayName() {
+		return requestedDisplayName;
 	}
-	public void setCodeSystemName(String codeSystemName) {
-		this.codeSystemName = codeSystemName;
+
+	public void setRequestedDisplayName(String requestedDisplayName) {
+		this.requestedDisplayName = requestedDisplayName;
 	}
-	public String getDisplayName() {
-		return displayName;
+
+	public String getRequestedValueSet() {
+		return requestedValueSet;
 	}
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+
+	public void setRequestedValueSet(String requestedValueSet) {
+		this.requestedValueSet = requestedValueSet;
 	}
+
+	public String getValueSetName() {
+		return valueSetName;
+	}
+
+	public void setValueSetName(String valueSetName) {
+		this.valueSetName = valueSetName;
+	}
+
+	public CcdaValidatorExpectedValuesType getExpectedValuesType() {
+		return expectedValuesType;
+	}
+
+	public void setExpectedValuesType(
+			CcdaValidatorExpectedValuesType expectedValuesType) {
+		this.expectedValuesType = expectedValuesType;
+	}
+
+	public Set<String> getExpectedValues() {
+		return expectedValues;
+	}
+
+	public void setExpectedValues(Set<String> expectedValues) {
+		this.expectedValues = expectedValues;
+	}
+
+	
+	
 	
 	
 	
