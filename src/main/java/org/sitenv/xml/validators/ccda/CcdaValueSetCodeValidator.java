@@ -3,14 +3,10 @@ package org.sitenv.xml.validators.ccda;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
-
 import org.apache.log4j.Logger;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
 import org.sitenv.vocabularies.data.ValueSetValidationResult;
@@ -181,24 +177,9 @@ public class CcdaValueSetCodeValidator {
 				result.setInformation(true);
 				result.setInfoMessage("Value set code validation attempt for a value set that does not exist in service.");
 				
-				if (VocabularyConstants.CODE_SYSTEM_MAP.keySet() != null)
-				{
-					Set<String> values = new TreeSet<String>();
-					for (String key : VocabularyConstants.CODE_SYSTEM_MAP.keySet())
-					{
-						if (key != null)
-						{
-							values.add(VocabularyConstants.CODE_SYSTEM_MAP.get(key));
-						}
-					}
-					
-
-					if (values.size() > 0)
-					{
-						result.setExpectedValues(values);
-						result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
-					}
-				}
+				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_NAMES.keySet());
+				result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
+				
 				list.add(result);
 			}
 			
@@ -220,8 +201,6 @@ public class CcdaValueSetCodeValidator {
 		result.setRequestedCodeSystem(codeSystem);
 		result.setRequestedCodeSystemName(codeSystemName);
 		result.setRequestedDisplayName(displayName);
-		result.setBaseXpathExpression(baseExpression);
-		result.setBaseNodeIndex(baseNodeIndex);
 		result.setXpathExpression(expression);
 		result.setNodeIndex(nodeIndex);
 		result.setRequestedValueSet(valueSet);
