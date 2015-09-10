@@ -135,7 +135,7 @@ public class CcdaCodeValidator {
 				result.setInformation(true);
 				result.setInfoMessage("Code validation attempt of code system that does not exist in service.");
 				
-				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_NAMES.keySet());
+				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_NAMES.values());
 				result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
 				
 				list.add(result);

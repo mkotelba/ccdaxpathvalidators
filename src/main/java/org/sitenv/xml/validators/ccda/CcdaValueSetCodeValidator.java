@@ -177,7 +177,7 @@ public class CcdaValueSetCodeValidator {
 				result.setInformation(true);
 				result.setInfoMessage("Value set code validation attempt for a value set that does not exist in service.");
 				
-				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_NAMES.keySet());
+				result.setExpectedValues(VocabularyConstants.CODE_SYSTEM_NAMES.values());
 				result.setExpectedValuesType(CcdaValidatorExpectedValuesType.CODE_SYSTEMS_FOR_INVALID_CODE_SYSTEM);
 				
 				list.add(result);
